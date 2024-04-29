@@ -29,4 +29,5 @@ public class Post
     User user;
     @ManyToOne
     Category category;
+    Integer likecount = 0;
 }

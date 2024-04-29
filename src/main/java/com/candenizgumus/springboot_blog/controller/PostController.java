@@ -29,4 +29,19 @@ public class PostController
     public ResponseEntity<List<Post>> findAll(){
         return ResponseEntity.ok(postService.findAll());
     }
+
+    @GetMapping(FINDALLBYPUBLISHDATE)
+    public ResponseEntity<List<Post>> findAllByOrderByPublishdateDesc(){
+        return ResponseEntity.ok(postService.findAllByOrderByPublishdateDesc());
+    }
+
+    @GetMapping(FINDALLBYPUBLISHDATE+"/{categoryId}")
+    public ResponseEntity<List<Post>> findAllByCategory_Id(@PathVariable Long categoryId){
+        return ResponseEntity.ok(postService.findAllByCategory_Id(categoryId));
+    }
+
+    @GetMapping(FINDALLBYUSERID)
+    public ResponseEntity<List<Post>> findAllByUser_Id(Long userId){
+        return ResponseEntity.ok(postService.findAllByUser_Id(userId));
+    }
 }

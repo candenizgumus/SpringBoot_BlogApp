@@ -1,5 +1,6 @@
 package com.candenizgumus.springboot_blog.controller;
 
+import com.candenizgumus.springboot_blog.dto.requests.CategorySaveDto;
 import com.candenizgumus.springboot_blog.entities.Category;
 import com.candenizgumus.springboot_blog.services.CategoryService;
 import com.candenizgumus.springboot_blog.services.UserService;
@@ -23,10 +24,21 @@ public class CategoryController
         return ResponseEntity.ok(categoryService.save(category));
     }
 
+    @PostMapping(SAVEDTO)
+    public ResponseEntity<Category> saveDto(@RequestBody CategorySaveDto dto){
+        return ResponseEntity.ok(categoryService.saveDto(dto));
+    }
+
     @GetMapping(FINDALL)
     public ResponseEntity<List<Category>> findAll(){
         return ResponseEntity.ok(categoryService.findAll());
     }
+    @GetMapping(FINDBYNAMEIGNORECASE)
+    public ResponseEntity<Category> findByNameIgnoreCase(String name){
+        return ResponseEntity.ok(categoryService.findByNameIgnoreCase(name));
+    }
+
+
 
 
 }

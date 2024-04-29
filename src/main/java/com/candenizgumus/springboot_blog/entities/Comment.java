@@ -1,6 +1,7 @@
 package com.candenizgumus.springboot_blog.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,15 +12,16 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 @Entity
-@Table(name = "tblcategory")
-public class Category
+@Table(name = "tblcomment")
+public class Comment
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @Column(unique = true)
-    String name;
-    @Column(length = 1000)
-    String description;
-
+    @Column(length = 2000)
+    String context;
+    @ManyToOne
+    Post post;
+    @ManyToOne
+    User user;
 }

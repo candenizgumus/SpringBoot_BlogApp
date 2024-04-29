@@ -27,4 +27,17 @@ public class UserController
     public ResponseEntity<List<User>> findAll(){
         return ResponseEntity.ok(userService.findAll());
     }
+
+    @PutMapping(UPDATE)
+    public ResponseEntity<User> update(@RequestBody User user){
+       return ResponseEntity.ok(userService.save(user));
+
+    }
+
+    @DeleteMapping(DELETE)
+    public ResponseEntity<String> delete(Long userId){
+        userService.deleteById(userId);
+        return ResponseEntity.ok("Basariyla user silindi");
+
+    }
 }

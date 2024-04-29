@@ -24,10 +24,9 @@ public class User
     String surname;
     @Column(unique = true)
     String username;
-    @Valid
     @Email(message = "Email format is not valid")
     @Column(unique = true)
     String email;
-    @Size(min = 4 ,message = "min password length = 4")
+    @Size(min = 4 ,message = "Password length should be more than 4")
     String password;
 }
