@@ -27,18 +27,29 @@ public class CategoryService extends ServiceManager<Category,Long>
         super(categoryRepository);
         this.categoryRepository = categoryRepository;
     }
-
+    /**
+     * Nesneyi database'e kaydeder
+     * @param dto kaydedilmek istenen DTO nesnesi
+     * @return kaydedilen nesneyi geri döndürür
+     */
     public Category saveDto(CategorySaveDto dto)
     {
         Category category = CategoryMapper.INSTANCE.categorySaveDtoToCategory(dto);
         return save(category);
     }
-
+    /**
+     * Veritabanından isme göre kategoriyi bulur ve getirir.
+     * @param name aranan kategorinin ismi.
+     * @return kategoriyi döndürür.
+     */
     public Category findByNameIgnoreCase(String name){
 
         return categoryRepository.findByNameIgnoreCase(name).orElseThrow(() -> new BlogAppException(ErrorType.CATEGORY_NOT_FOUND));
     }
-
+    /**
+     * Tüm kategorileri veritabanından getirir.
+     * @return Veritabanındaki tüm kategorileri içeren bir DTO formatında liste döndürür.
+     */
     public List<CategoryResponseDto> findAllDto()
     {
         List<CategoryResponseDto>  newCategoryList = new ArrayList<>();

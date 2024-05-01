@@ -25,19 +25,35 @@ public class PostService extends ServiceManager<Post,Long>
         super(postRepository);
         this.postRepository = postRepository;
     }
-
+    /**
+     * Veri tabanından bütün postları yayın tarihine göre sıralı şekilde getirir.
+     * @return Tüm postları liste şeklinde döndürür.
+     */
     public List<Post> findAllByOrderByPublishdateDesc(){
         return postRepository.findAllByOrderByPublishdateDesc();
     }
 
+    /**
+     * Veri tabanından category id'si ile eşleşen bütün postları döndürür.
+     * @param categoryId aranan kategorinin id'si.
+     * @return Bütün postları liste şeklinde döndürür.
+     */
     public List<Post> findAllByCategory_Id(Long categoryId){
         return postRepository.findAllByCategory_Id(categoryId);
     }
 
+    /**
+     * Veri tabanından user id ile eşleşen bütün postları getirir.
+     * @param userId aranan user'ın id'si.
+     * @return Bulunan bütün postları liste şeklinde döndürür.
+     */
     public List<Post> findAllByUser_Id(Long userId){
         return postRepository.findAllByUser_Id(userId);
     }
-
+    /**
+     * Tüm postları veritabanından getirir.
+     * @return Veritabanındaki tüm Postları içeren bir DTO formatında liste döndürür.
+     */
     public List<PostResponseDto> findAllDto()
     {
         List<PostResponseDto>  newPostList = new ArrayList<>();
@@ -45,7 +61,11 @@ public class PostService extends ServiceManager<Post,Long>
 
         return newPostList;
     }
-
+    /**
+     * Veritabanından aranan kelime içinde bulunan bütün postları getirir.
+     * @param searchedWord aranan kelime
+     * @return Bulunan bütün postları liste şeklinde döndürür.
+     */
     public List<Post> findAllByContextContainingIgnoreCase(String searchedWord){
         return postRepository.findAllByContextContainingIgnoreCase(searchedWord);
     }

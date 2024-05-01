@@ -36,7 +36,11 @@ public class LikeService extends ServiceManager<Like,Long>
         this.userService = userService;
     }
 
-
+    /**
+     * Nesneyi kontrollerden geçirir. Daha önce beğeni kaydedilmemişse kaydeder ve post'un like sayısını günceller.
+     * @param dto kaydedilmek istenen nesne
+     * @return kaydedilen nesneyi geri döndürür
+     */
     public Like save(LikeSaveDto dto)
     {
         User user = userService.findById(dto.user()).orElseThrow(() -> new BlogAppException(ErrorType.USER_NOT_FOUND));
@@ -54,11 +58,20 @@ public class LikeService extends ServiceManager<Like,Long>
         return super.save(like);
     }
 
+    /**
+     * Post'un like sayısını günceller.
+     * @param post like sayısı güncellenecek olan post
+     * @param value eklenecek veya çıkarılacak olan like sayısı.
+     */
     private void increaseOrDecreaseLikeCountOfPost(Post post,Integer value){
         post.setLikecount(post.getLikecount()+value);
         postService.save(post);
     }
 
+    /**
+     * Veritabanından id'si verilen veriyi siler. Post içerisindeki like sayısını günceller.
+     * @param aLong silinecek olan like'ın id'si.
+     */
     @Override
     public void deleteById(Long aLong)
     {
@@ -67,6 +80,10 @@ public class LikeService extends ServiceManager<Like,Long>
         super.deleteById(aLong);
     }
 
+    /**
+     * Tüm likeları veritabanından getirir.
+     * @return Veritabanındaki tüm likeları içeren bir DTO formatında liste döndürür.
+     */
     public List<LikeResponseDto> findAllDto()
     {
         List<LikeResponseDto>  newLikeList = new ArrayList<>();

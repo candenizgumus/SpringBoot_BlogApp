@@ -29,7 +29,11 @@ public class GlobalExceptionHandler
        return ErrorMessage.builder().code(ex.getErrorType().getCode()).message(ex.getMessage()).build();
     }
 
-
+    /**
+     * Exception'ı yakalar ve gerekli parametreleri alarak kullanıcıyı bilgilendirir.
+     * @param ex Yakalanmak istenen exception.
+     * @return hata bilgilerini döndürür.
+     */
     @ExceptionHandler(RuntimeException.class) // Hata yakalayici bir metod olduğunu belirtmek için.
     public ResponseEntity<String> handleException(RuntimeException ex){
        return ResponseEntity.badRequest().body(ex.getMessage());

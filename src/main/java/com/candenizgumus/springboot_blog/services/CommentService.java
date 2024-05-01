@@ -25,7 +25,10 @@ public class CommentService extends ServiceManager<Comment,Long>
         super(commentRepository);
         this.commentRepository = commentRepository;
     }
-
+    /**
+     * Tüm commentleri veritabanından getirir.
+     * @return Veritabanındaki tüm commentleri içeren bir DTO formatında liste döndürür.
+     */
     public List<CommentResponseDto> findAllDto()
     {
         List<CommentResponseDto>  newCommentList = new ArrayList<>();

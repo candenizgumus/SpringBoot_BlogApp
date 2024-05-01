@@ -23,7 +23,10 @@ public class UserService extends ServiceManager<User,Long>
         super(userRepository);
         this.userRepository = userRepository;
     }
-
+    /**
+     * Tüm userları veritabanından getirir.
+     * @return Veritabanındaki tüm Userları içeren bir DTO formatında liste döndürür.
+     */
     public List<UserResponseDto> findAllDto()
     {
         List<UserResponseDto>  newUserList = new ArrayList<>();
