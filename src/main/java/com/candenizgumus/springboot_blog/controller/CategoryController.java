@@ -1,7 +1,10 @@
 package com.candenizgumus.springboot_blog.controller;
 
 import com.candenizgumus.springboot_blog.dto.requests.CategorySaveDto;
+import com.candenizgumus.springboot_blog.dto.responses.CategoryResponseDto;
+import com.candenizgumus.springboot_blog.dto.responses.PostResponseDto;
 import com.candenizgumus.springboot_blog.entities.Category;
+import com.candenizgumus.springboot_blog.entities.Comment;
 import com.candenizgumus.springboot_blog.services.CategoryService;
 import com.candenizgumus.springboot_blog.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -33,9 +36,30 @@ public class CategoryController
     public ResponseEntity<List<Category>> findAll(){
         return ResponseEntity.ok(categoryService.findAll());
     }
+    @GetMapping(FINDBYID)
+    public ResponseEntity<Category> findById(Long categoryId){
+        return ResponseEntity.ok(categoryService.findById(categoryId).get());
+    }
+    @GetMapping(FINDALLDTO)
+    public ResponseEntity<List<CategoryResponseDto>> findAllDto(){
+        return ResponseEntity.ok(categoryService.findAllDto());
+    }
     @GetMapping(FINDBYNAMEIGNORECASE)
     public ResponseEntity<Category> findByNameIgnoreCase(String name){
         return ResponseEntity.ok(categoryService.findByNameIgnoreCase(name));
+    }
+
+    @PutMapping(UPDATE)
+    public ResponseEntity<Category> update(@RequestBody Category category){
+        return ResponseEntity.ok(categoryService.save(category));
+
+    }
+
+    @DeleteMapping(DELETE)
+    public ResponseEntity<String> delete(Long categoryId){
+        categoryService.deleteById(categoryId);
+        return ResponseEntity.ok("Basariyla category silindi");
+
     }
 
 

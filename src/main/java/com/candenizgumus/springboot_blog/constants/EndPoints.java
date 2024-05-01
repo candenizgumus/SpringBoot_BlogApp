@@ -2,6 +2,7 @@ package com.candenizgumus.springboot_blog.constants;
 
 public class EndPoints
 {
+    //METHODS
     public static final String SAVE = "/save";
     public static final String SAVEDTO = "/savedto";
     public static final String UPDATE = "/update";
@@ -11,6 +12,8 @@ public class EndPoints
     public static final String FINDALLDTO = "/findalldto";
     public static final String FINDALLBYPUBLISHDATE = "/findallbypublishdate";
     public static final String FINDALLBYUSERID = "/findallbyuserid";
+    public static final String FINDALLBYCATEGORYID = "/findallbycategoryid";
+    public static final String FINDALLBYCONTEXTCONTAINING = "/findallbycontextcontaining";
     public static final String FINDBYNAMEIGNORECASE = "/findbynameignorecase";
 
 

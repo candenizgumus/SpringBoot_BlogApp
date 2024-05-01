@@ -2,6 +2,7 @@ package com.candenizgumus.springboot_blog.controller;
 
 import static com.candenizgumus.springboot_blog.constants.EndPoints.*;
 
+import com.candenizgumus.springboot_blog.dto.responses.UserResponseDto;
 import com.candenizgumus.springboot_blog.entities.User;
 import com.candenizgumus.springboot_blog.services.UserService;
 import jakarta.validation.Valid;
@@ -26,6 +27,16 @@ public class UserController
     @GetMapping(FINDALL)
     public ResponseEntity<List<User>> findAll(){
         return ResponseEntity.ok(userService.findAll());
+    }
+
+    @GetMapping(FINDALLDTO)
+    public ResponseEntity<List<UserResponseDto>> findAllDto(){
+        return ResponseEntity.ok(userService.findAllDto());
+    }
+
+    @GetMapping(FINDBYID)
+    public ResponseEntity<User> findById(Long userId){
+        return ResponseEntity.ok(userService.findById(userId).get());
     }
 
     @PutMapping(UPDATE)

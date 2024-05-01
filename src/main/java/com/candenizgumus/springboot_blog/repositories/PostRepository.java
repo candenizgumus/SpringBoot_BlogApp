@@ -15,4 +15,6 @@ public interface PostRepository extends JpaRepository<Post,Long>
 
     List<Post> findAllByUser_Id(Long userId);
 
+    List<Post> findAllByContextContainingIgnoreCase(String searchedWord);
+
 }
